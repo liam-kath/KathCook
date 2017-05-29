@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kath.cook.dao.MainCookMapper" >
+  <resultMap id="BaseResultMap" type="com.kath.cook.domain.MainCook" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="cook_name" property="cookName" jdbcType="VARCHAR" />
+    <result column="cook_image" property="cookImage" jdbcType="VARCHAR" />
+    <result column="cook_shicai" property="cookShicai" jdbcType="VARCHAR" />
+    <result column="cook_yongliang" property="cookYongliang" jdbcType="VARCHAR" />
+    <result column="cook_buzhou_image" property="cookBuzhouImage" jdbcType="VARCHAR" />
+    <result column="cook_buzou_miaoshu" property="cookBuzouMiaoshu" jdbcType="VARCHAR" />
+    <result column="CREATE_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="display" property="display" jdbcType="INTEGER" />
+    <result column="test1" property="test1" jdbcType="VARCHAR" />
+    <result column="test2" property="test2" jdbcType="VARCHAR" />
+    <result column="test3" property="test3" jdbcType="VARCHAR" />
+    <result column="test4" property="test4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, cook_name, cook_image, cook_shicai, cook_yongliang, cook_buzhou_image, 
+    cook_buzou_miaoshu, CREATE_time, update_time, display, test1, test2, test3, test4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_main_cook
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_main_cook
+  </select>
+  
+  <select id="searchCook" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_main_cook
+    where cook_name like '%${cookName}%'
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_main_cook
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kath.cook.domain.MainCook" >
+    insert into tb_main_cook (id, user_id, cook_name, 
+      cook_image, cook_shicai, cook_yongliang, 
+      cook_buzhou_image, cook_buzou_miaoshu, CREATE_time, 
+      update_time, display, test1, 
+      test2, test3, test4
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{cookName,jdbcType=VARCHAR}, 
+      #{cookImage,jdbcType=VARCHAR}, #{cookShicai,jdbcType=VARCHAR}, #{cookYongliang,jdbcType=VARCHAR}, 
+      #{cookBuzhouImage,jdbcType=VARCHAR}, #{cookBuzouMiaoshu,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{display,jdbcType=INTEGER}, #{test1,jdbcType=VARCHAR}, 
+      #{test2,jdbcType=VARCHAR}, #{test3,jdbcType=VARCHAR}, #{test4,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kath.cook.domain.MainCook" >
+    insert into tb_main_cook
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="cookName != null" >
+        cook_name,
+      </if>
+      <if test="cookImage != null" >
+        cook_image,
+      </if>
+      <if test="cookShicai != null" >
+        cook_shicai,
+      </if>
+      <if test="cookYongliang != null" >
+        cook_yongliang,
+      </if>
+      <if test="cookBuzhouImage != null" >
+        cook_buzhou_image,
+      </if>
+      <if test="cookBuzouMiaoshu != null" >
+        cook_buzou_miaoshu,
+      </if>
+      <if test="createTime != null" >
+        CREATE_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="display != null" >
+        display,
+      </if>
+      <if test="test1 != null" >
+        test1,
+      </if>
+      <if test="test2 != null" >
+        test2,
+      </if>
+      <if test="test3 != null" >
+        test3,
+      </if>
+      <if test="test4 != null" >
+        test4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cookName != null" >
+        #{cookName,jdbcType=VARCHAR},
+      </if>
+      <if test="cookImage != null" >
+        #{cookImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cookShicai != null" >
+        #{cookShicai,jdbcType=VARCHAR},
+      </if>
+      <if test="cookYongliang != null" >
+        #{cookYongliang,jdbcType=VARCHAR},
+      </if>
+      <if test="cookBuzhouImage != null" >
+        #{cookBuzhouImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cookBuzouMiaoshu != null" >
+        #{cookBuzouMiaoshu,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="display != null" >
+        #{display,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null" >
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null" >
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null" >
+        #{test3,jdbcType=VARCHAR},
+      </if>
+      <if test="test4 != null" >
+        #{test4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kath.cook.domain.MainCook" >
+    update tb_main_cook
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cookName != null" >
+        cook_name = #{cookName,jdbcType=VARCHAR},
+      </if>
+      <if test="cookImage != null" >
+        cook_image = #{cookImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cookShicai != null" >
+        cook_shicai = #{cookShicai,jdbcType=VARCHAR},
+      </if>
+      <if test="cookYongliang != null" >
+        cook_yongliang = #{cookYongliang,jdbcType=VARCHAR},
+      </if>
+      <if test="cookBuzhouImage != null" >
+        cook_buzhou_image = #{cookBuzhouImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cookBuzouMiaoshu != null" >
+        cook_buzou_miaoshu = #{cookBuzouMiaoshu,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="display != null" >
+        display = #{display,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null" >
+        test1 = #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null" >
+        test2 = #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null" >
+        test3 = #{test3,jdbcType=VARCHAR},
+      </if>
+      <if test="test4 != null" >
+        test4 = #{test4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kath.cook.domain.MainCook" >
+    update tb_main_cook
+    set user_id = #{userId,jdbcType=INTEGER},
+      cook_name = #{cookName,jdbcType=VARCHAR},
+      cook_image = #{cookImage,jdbcType=VARCHAR},
+      cook_shicai = #{cookShicai,jdbcType=VARCHAR},
+      cook_yongliang = #{cookYongliang,jdbcType=VARCHAR},
+      cook_buzhou_image = #{cookBuzhouImage,jdbcType=VARCHAR},
+      cook_buzou_miaoshu = #{cookBuzouMiaoshu,jdbcType=VARCHAR},
+      CREATE_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      display = #{display,jdbcType=INTEGER},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR},
+      test4 = #{test4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
